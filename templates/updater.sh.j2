@@ -8,14 +8,14 @@ echo "Updating updater before runnning update"
 git fetch origin master
 git checkout origin/master update.sh
 
-if ./update.sh -c | grep -q 'Updated code is available'; then
+if ./update.sh -c --no-update-compose | grep -q 'Updated code is available'; then
   echo "Upgrading Mailcow"
 
   echo "Installing updates"
-  echo 'y' | ./update.sh
+  echo 'y' | ./update.sh --no-update-compose
 
   echo "Collecting Gargabe"
-  echo 'y' | ./update.sh --gc
+  echo 'y' | ./update.sh --gc --no-update-compose
 else
   echo "No updates are available"
 fi
